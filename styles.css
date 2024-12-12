@@ -31,35 +31,29 @@ header p {
     font-size: 1.2em;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-}
-
 nav ul {
-    list-style-type: none;
-    margin: 0;
+    list-style: none;
     padding: 0;
-    display: flex;
-    gap: 20px;
+    text-align: center;
+    background-color: #333;
+    margin-top: 20px;
 }
 
 nav ul li {
     display: inline;
+    margin: 0 15px;
 }
 
 nav ul li a {
-    color: white;
+    color: #fff;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.1em;
+    padding: 10px;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+    background-color: #555;
+    border-radius: 5px;
 }
 
 section {
@@ -174,24 +168,3 @@ html {
         margin-bottom: 20px; /* Space between lists */
     }
 }
-
-.contact-details {
-    display: flex;
-    gap: 15px; /* Space between the email and phone */
-    color: white;
-    font-size: 0.9rem;
-}
-
-.contact-details span {
-    display: inline-block;
-}
-
-.contact-details a {
-    color: #00bcd4; /* Light blue color for links */
-    text-decoration: none;
-}
-
-.contact-details a:hover {
-    text-decoration: underline;
-}
-
