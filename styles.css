@@ -129,3 +129,43 @@ html {
     background-color: #000; /* Dark color for the bullet */
     border-radius: 50%; /* Make it circular */
 }
+
+/* Skills Section Layout */
+.skills-container {
+    display: flex; /* Flexbox layout to divide into two columns */
+    justify-content: space-between; /* Space between the two lists */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.skills-list {
+    list-style-type: none; /* Remove default bullets */
+    padding-left: 0; /* Remove padding */
+    width: 45%; /* Each list will take up 45% of the container width */
+}
+
+.skills-list li {
+    position: relative; /* Position the bullet */
+    padding-left: 25px; /* Add space for the bullet */
+    margin-bottom: 10px; /* Add some space between list items */
+}
+
+.skills-list li::before {
+    content: ''; /* No text */
+    position: absolute;
+    left: 0; /* Position the bullet to the left */
+    top: 50%; /* Vertically center the bullet */
+    transform: translateY(-50%); /* Fine-tune vertical alignment */
+    width: 8px; /* Bullet size */
+    height: 8px; /* Bullet size */
+    background-color: #000; /* Dark color for the bullet */
+    border-radius: 50%; /* Make it circular */
+}
+
+/* Responsive Design: Stack the lists on smaller screens */
+@media (max-width: 768px) {
+    .skills-list {
+        width: 100%; /* Make each list take up full width */
+        margin-bottom: 20px; /* Space between lists */
+    }
+}
+
