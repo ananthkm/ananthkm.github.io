@@ -106,3 +106,26 @@ footer p {
 html {
     scroll-behavior: smooth;
 }
+
+/* Custom Dark Circle Bullets for Experience Section */
+.experience-list {
+    list-style-type: none; /* Remove default bullets */
+    padding-left: 20px; /* Add some padding for alignment */
+}
+
+.experience-list li {
+    position: relative; /* To position the bullet */
+    padding-left: 25px; /* Create space for the bullet */
+}
+
+.experience-list li::before {
+    content: ''; /* No text */
+    position: absolute;
+    left: 0; /* Position the bullet to the left */
+    top: 50%; /* Vertically center the bullet */
+    transform: translateY(-50%); /* Fine-tune vertical alignment */
+    width: 8px; /* Bullet size */
+    height: 8px; /* Bullet size */
+    background-color: #000; /* Dark color for the bullet */
+    border-radius: 50%; /* Make it circular */
+}
