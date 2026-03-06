@@ -1,138 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ananth Kumar - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/scroll-behavior/1.0.0/scroll-behavior.min.js"></script> <!-- For smooth scrolling -->
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ananth Kumar – Senior Software Engineer</title>
+<style>
+  :root {
+    --navy: #1a2b4a;
+    --gold: #c9a84c;
+    --light: #f5f7fa;
+    --text: #333;
+    --muted: #666;
+    --border: #dde3ec;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Georgia',serif; color:var(--text); background:#fff; }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; width:100%; background:var(--navy);
+    z-index:100; display:flex; justify-content:space-between;
+    align-items:center; padding:0 5%;
+  }
+  nav .logo { color:#fff; font-size:1.1rem; letter-spacing:2px; padding:18px 0;
+    font-variant:small-caps; font-weight:bold; }
+  nav ul { list-style:none; display:flex; gap:28px; }
+  nav ul a { color:#cdd5e0; text-decoration:none; font-size:.85rem;
+    letter-spacing:1px; text-transform:uppercase; font-family:sans-serif;
+    transition:color .2s; }
+  nav ul a:hover { color:var(--gold); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #2c4270 100%);
+    min-height:100vh; display:flex; align-items:center; padding:0 10%;
+    padding-top:70px;
+  }
+  .hero-content { max-width:700px; }
+  .hero-tag { color:var(--gold); font-family:sans-serif; font-size:.85rem;
+    letter-spacing:3px; text-transform:uppercase; margin-bottom:16px; }
+  .hero h1 { color:#fff; font-size:3.2rem; line-height:1.2; margin-bottom:16px; }
+  .hero .title { color:#a8bdd8; font-size:1.25rem; margin-bottom:24px; }
+  .hero p { color:#8fa8c8; font-size:1rem; line-height:1.8; max-width:580px; }
+  .hero-btns { display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+  .btn { padding:12px 28px; font-family:sans-serif; font-size:.85rem;
+    letter-spacing:1px; text-transform:uppercase; text-decoration:none;
+    border-radius:2px; cursor:pointer; transition:.2s; }
+  .btn-primary { background:var(--gold); color:var(--navy); font-weight:bold; }
+  .btn-primary:hover { background:#e0be6a; }
+  .btn-outline { border:1px solid #a8bdd8; color:#a8bdd8; }
+  .btn-outline:hover { border-color:#fff; color:#fff; }
+
+  /* SECTIONS */
+  section { padding:90px 10%; }
+  section:nth-child(even) { background:var(--light); }
+  .section-label { color:var(--gold); font-family:sans-serif; font-size:.75rem;
+    letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; }
+  h2 { color:var(--navy); font-size:2rem; margin-bottom:40px; }
+  h2 span { border-bottom:3px solid var(--gold); padding-bottom:4px; }
+
+  /* EXPERIENCE */
+  .timeline { position:relative; padding-left:28px; }
+  .timeline::before { content:''; position:absolute; left:6px; top:0; bottom:0;
+    width:2px; background:var(--border); }
+  .job { position:relative; margin-bottom:44px; }
+  .job::before { content:''; position:absolute; left:-25px; top:6px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--gold); border:2px solid #fff;
+    box-shadow:0 0 0 2px var(--gold); }
+  .job-header { display:flex; justify-content:space-between;
+    align-items:flex-start; flex-wrap:wrap; gap:6px; margin-bottom:6px; }
+  .job h3 { color:var(--navy); font-size:1.05rem; }
+  .job-date { color:var(--gold); font-family:sans-serif; font-size:.8rem;
+    letter-spacing:1px; background:#fff3d8; padding:3px 10px; border-radius:20px; }
+  .job-company { color:var(--muted); font-family:sans-serif; font-size:.85rem;
+    margin-bottom:10px; }
+  .job ul { padding-left:18px; }
+  .job li { font-size:.92rem; line-height:1.8; color:#444; margin-bottom:4px; }
+
+  /* SKILLS */
+  .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:14px; }
+  .skill-tag { background:#fff; border:1px solid var(--border);
+    padding:10px 16px; text-align:center; font-family:sans-serif;
+    font-size:.85rem; color:var(--navy); border-radius:2px;
+    transition:.2s; cursor:default; }
+  .skill-tag:hover { border-color:var(--gold); background:#fffbf0; color:var(--gold); }
+
+  /* EDUCATION */
+  .edu-grid { display:grid; gap:24px; }
+  .edu-card { background:#fff; border-left:4px solid var(--gold);
+    padding:20px 24px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+  .edu-card h3 { color:var(--navy); font-size:1rem; margin-bottom:4px; }
+  .edu-card .school { color:var(--muted); font-family:sans-serif; font-size:.85rem; }
+  .edu-card .grade { color:var(--gold); font-family:sans-serif; font-size:.82rem;
+    margin-top:6px; }
+
+  /* CONTACT */
+  .contact-box { max-width:560px; background:var(--navy); padding:48px;
+    border-radius:4px; }
+  .contact-box p { color:#a8bdd8; font-size:.95rem; line-height:1.8; margin-bottom:28px; }
+  .contact-item { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+  .contact-icon { width:38px; height:38px; background:rgba(201,168,76,.15);
+    border:1px solid rgba(201,168,76,.4); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1rem; flex-shrink:0; }
+  .contact-text { color:#cdd5e0; font-family:sans-serif; font-size:.9rem; }
+  .contact-text a { color:var(--gold); text-decoration:none; }
+  .contact-text a:hover { text-decoration:underline; }
+
+  /* FOOTER */
+  footer { background:var(--navy); color:#6a7f99; text-align:center;
+    padding:24px; font-family:sans-serif; font-size:.8rem; }
+  footer span { color:var(--gold); }
+
+  @media(max-width:640px){
+    .hero h1 { font-size:2.2rem; }
+    section { padding:60px 6%; }
+    nav ul { gap:14px; }
+    .contact-box { padding:28px; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Ananth Kumar</h1>
-            <p>Senior Software Engineer at PayPal</p>
-        </div>
-        <!-- Navigation Menu -->
-        <nav>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-                 <li><a href="my-work.html">My Work</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Senior Software Engineer with a proven track record at PayPal, skilled in delivering innovative solutions to complex challenges. I excel in fast-paced environments, translating business requirements into scalable software solutions, and am dedicated to high-quality, customer-focused products that align with strategic goals.</p>
-        </div>
-    </section>
-    
+
+<nav>
+  <div class="logo">AK</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-content">
+    <div class="hero-tag">Senior Software Engineer</div>
+    <h1>Ananth Kumar</h1>
+    <div class="title">PayPal · Bengaluru, India</div>
+    <p>Senior Software Engineer with a proven track record at PayPal, skilled in delivering innovative solutions to complex challenges. I excel in fast-paced environments, translating business requirements into scalable software solutions, and am dedicated to high-quality, customer-focused products that align with strategic goals.</p>
+    <div class="hero-btns">
+      <a href="#experience" class="btn btn-primary">View Experience</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
 <section id="experience">
-    <div class="container">
-        <h2>Experience</h2>
-        
-        <h3>Software Engineer Intern, PayPal, Chennai (01/2019 - 06/2019)</h3>
-        <ul class="experience-list">
-            <li>Utilized Elastic Search and Java Spring Boot framework to enhance system performance.</li>
-            <li>Developed a search functionality that improved file retrieval speed by 30%, enabling instant access using file/folder properties.</li>
-        </ul>
-        
-        <h3>Software Engineer 1, PayPal, Bengaluru (07/2019 - 02/2021)</h3>
-        <ul class="experience-list">
-            <li>Worked on the Product DropZone, which is the Secure file transfer platform to share business-critical files like compliance and settlements.</li>
-            <li>Integrated with DLP (Data Loss Prevention) to avoid the flow of sensitive content without encryption, helping avoid security leaks and incidents across PayPal.</li>
-            <li>Implemented an alerting mechanism for critical processes to avoid incidents.</li>
-            <li>Provided great support for customer queries.</li>
-        </ul>
-        
-        <h3>Software Engineer 2, PayPal, Bengaluru (02/2021 - 07/2023)</h3>
-        <ul class="experience-list">
-            <li>Scaled the file transfer application, increasing efficiency for transferring secure files across PayPal, external partners, and banks.</li>
-            <li>Enabled data localization for transferring files across different geographical locations.</li>
-            <li>Developed APIs for internal merchant file transfer to share critical settlement files with banks and partners.</li>
-            <li>Enabled file/folder sharing with mail groups to increase team collaboration.</li>
-            <li>Improved monitoring and alerting for the application using Splunk dashboards to identify issues quickly.</li>
-            <li>Implemented a file access permission feature that automated manual approval processes, reducing support team effort by 50%.</li>
-            <li>Automated file transfers between AWS S3, Google GCS, and PayPal’s DropZone, streamlining cloud-to-cloud file transfers.</li>
-            <li>Provided support to DropZone internal/external customers, banks, and partners.</li>
-        </ul>
-        
-        <h3>Software Engineer 3, PayPal, Bengaluru (07/2023 - Present)</h3>
-        <ul class="experience-list">
-            <li>Created a monitoring flow to track all crawl jobs, including success and failure percentages by domain and page.</li>
-            <li>Built a self-service dashboard for onboarding users to the crawler platform, reducing manual efforts and increasing the customer base.</li>
-            <li>Worked on BigQuery for analytics, assisting internal clients in analyzing notifications sent.</li>
-            <li>Implemented best practices for code reviews, unit testing, and CI/CD to optimize code quality and deployment efficiency.</li>
-            <li>Developed an SFTP onboarding portal, reducing the Braintree merchant onboarding time from 3 days to 10 minutes.</li>
-            <li>Worked on admin tools for integrating Braintree as a tenant into the PayPal SFTP portal.</li>
-        </ul>
+  <div class="section-label">Career Journey</div>
+  <h2><span>Experience</span></h2>
+  <div class="timeline">
+
+    <div class="job">
+      <div class="job-header">
+        <h3>Software Engineer 3</h3>
+        <span class="job-date">07/2023 – Present</span>
+      </div>
+      <div class="job-company">PayPal · Bengaluru</div>
+      <ul>
+        <li>Created a monitoring flow to track all crawl jobs, including success and failure percentages by domain and page.</li>
+        <li>Built a self-service dashboard for onboarding users to the crawler platform, reducing manual efforts and increasing the customer base.</li>
+        <li>Worked on BigQuery for analytics, assisting internal clients in analyzing notifications sent.</li>
+        <li>Implemented best practices for code reviews, unit testing, and CI/CD to optimize code quality and deployment efficiency.</li>
+        <li>Developed an SFTP onboarding portal, reducing the Braintree merchant onboarding time from <strong>3 days to 10 minutes</strong>.</li>
+        <li>Worked on admin tools for integrating Braintree as a tenant into the PayPal SFTP portal.</li>
+      </ul>
     </div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>Software Engineer 2</h3>
+        <span class="job-date">02/2021 – 07/2023</span>
+      </div>
+      <div class="job-company">PayPal · Bengaluru</div>
+      <ul>
+        <li>Scaled the file transfer application, increasing efficiency for transferring secure files across PayPal, external partners, and banks.</li>
+        <li>Enabled data localization for transferring files across different geographical locations.</li>
+        <li>Developed APIs for internal merchant file transfer to share critical settlement files with banks and partners.</li>
+        <li>Improved monitoring and alerting using Splunk dashboards to identify issues quickly.</li>
+        <li>Implemented a file access permission feature that automated manual approval processes, reducing support team effort by <strong>50%</strong>.</li>
+        <li>Automated file transfers between AWS S3, Google GCS, and PayPal's DropZone, streamlining cloud-to-cloud transfers.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>Software Engineer 1</h3>
+        <span class="job-date">07/2019 – 02/2021</span>
+      </div>
+      <div class="job-company">PayPal · Bengaluru</div>
+      <ul>
+        <li>Worked on Product DropZone — PayPal's secure file transfer platform for compliance and settlement files.</li>
+        <li>Integrated with DLP (Data Loss Prevention) to prevent sensitive content flow without encryption.</li>
+        <li>Implemented an alerting mechanism for critical processes to avoid incidents.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>Software Engineer Intern</h3>
+        <span class="job-date">01/2019 – 06/2019</span>
+      </div>
+      <div class="job-company">PayPal · Chennai</div>
+      <ul>
+        <li>Utilized Elastic Search and Java Spring Boot framework to enhance system performance.</li>
+        <li>Developed a search functionality that improved file retrieval speed by <strong>30%</strong>.</li>
+      </ul>
+    </div>
+
+  </div>
 </section>
-    
-    <section id="education">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="edu">
-                <h3>Bachelor of Engineering (B.E), Karpagam College of Engineering</h3>
-                <p><strong>January 2015 – December 2019</strong><br>Grade: First Class</p>
-            </div>
-            <div class="edu">
-                <h3>High School, St. Thomas Matriculation Higher Secondary School</h3>
-                <p><strong>January 2008 – December 2015</strong><br>89%</p>
-            </div>
-        </div>
-    </section>
-    
+
+<!-- SKILLS -->
 <section id="skills">
-    <div class="container">
-        <h2>Skills</h2>
-        
-        <div class="skills-container">
-            <ul class="skills-list">
-                <li>Java</li>
-                <li>Python</li>
-                <li>Scala</li>
-                <li>JavaScript</li>
-                <li>C++</li>
-                <li>SpringBoot</li>
-            </ul>
-            
-            <ul class="skills-list">
-                <li>Squbs</li>
-                <li>NodeJs</li>
-                <li>MySQL</li>
-                <li>Oracle</li>
-                <li>Elastic Search (ELK)</li>
-                <li>Amazon S3</li>
-                <li>BigQuery</li>
-                <li>Git</li>
-                <li>Jenkins</li>
-                <li>SonarQube</li>
-                <li>Splunk</li>
-            </ul>
-        </div>
-    </div>
+  <div class="section-label">Technical Expertise</div>
+  <h2><span>Skills</span></h2>
+  <div class="skills-grid">
+    <div class="skill-tag">Java</div>
+    <div class="skill-tag">Python</div>
+    <div class="skill-tag">Scala</div>
+    <div class="skill-tag">JavaScript</div>
+    <div class="skill-tag">C++</div>
+    <div class="skill-tag">Spring Boot</div>
+    <div class="skill-tag">Squbs</div>
+    <div class="skill-tag">Node.js</div>
+    <div class="skill-tag">MySQL</div>
+    <div class="skill-tag">Oracle</div>
+    <div class="skill-tag">Elastic Search</div>
+    <div class="skill-tag">Amazon S3</div>
+    <div class="skill-tag">BigQuery</div>
+    <div class="skill-tag">Git</div>
+    <div class="skill-tag">Jenkins</div>
+    <div class="skill-tag">SonarQube</div>
+    <div class="skill-tag">Splunk</div>
+  </div>
 </section>
-    
-    <section id="contact">
-        <div class="container">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:ananthkumar1056@gmail.com">ananthkumar1056@gmail.com</a></p>
-            <p>Phone: 9092732782</p>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Ananth Kumar</p>
-        </div>
-    </footer>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Academic Background</div>
+  <h2><span>Education</span></h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <h3>Bachelor of Engineering (B.E)</h3>
+      <div class="school">Karpagam College of Engineering &nbsp;·&nbsp; Jan 2015 – Dec 2019</div>
+      <div class="grade">🎓 First Class</div>
+    </div>
+    <div class="edu-card">
+      <h3>High School</h3>
+      <div class="school">St. Thomas Matriculation Higher Secondary School &nbsp;·&nbsp; Jan 2008 – Dec 2015</div>
+      <div class="grade">📊 89%</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2><span>Contact</span></h2>
+  <div class="contact-box">
+    <p>I'm always open to discussing new projects, opportunities, or interesting ideas. Feel free to reach out!</p>
+    <div class="contact-item">
+      <div class="contact-icon">✉</div>
+      <div class="contact-text">
+        <a href="mailto:ananthkumar1056@gmail.com">ananthkumar1056@gmail.com</a>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div class="contact-text">+91 9092732782</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div class="contact-text">Bengaluru, India</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2024 <span>Ananth Kumar</span> · Senior Software Engineer at PayPal</p>
+</footer>
+
 </body>
 </html>
